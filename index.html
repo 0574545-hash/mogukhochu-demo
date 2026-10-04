@@ -46,6 +46,13 @@ input,textarea{font-size:16px}
 </div>
 <script>window.__PROPS = {"onboarding": true, "demo": false, "emptyLists": false, "offline": false, "emptyCity": false, "entry": "Новый", "mixTrans": false}; window.__LABELS = {"onboarding": "Онбординг (первый вход)", "demo": "Демо-режим (автопоказ)", "emptyLists": "Пустые списки", "offline": "Нет сети", "emptyCity": "Пустой город", "mixTrans": "Смешанные переходы на заставке", "entry": "Тип входа"}; window.__OPTS = {"entry": ["Новый", "Сессия сохранена", "Вернувшийся", "Незавершённая регистрация", "Аккаунт на удалении", "Заблокирован"]};</script>
 <style>
+[data-anim="form"]>*{animation:enRise 300ms cubic-bezier(.2,.8,.2,1) both} /*soft*/
+[data-anim="form"]>*:nth-child(2){animation-delay:45ms}[data-anim="form"]>*:nth-child(3){animation-delay:90ms}[data-anim="form"]>*:nth-child(4){animation-delay:135ms}[data-anim="form"]>*:nth-child(5){animation-delay:180ms}[data-anim="form"]>*:nth-child(6){animation-delay:225ms}[data-anim="form"]>*:nth-child(n+7){animation-delay:270ms} /*soft*/
+[data-anim="pop"]{animation:mhPop 260ms cubic-bezier(.34,1.56,.64,1) both} /*soft*/
+[data-anim="open"]{animation:mhOpen 220ms ease-out both} /*soft*/
+@keyframes mhPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes mhOpen{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){[data-anim]{animation:none !important}} /*soft*/
 .cta-soft,button[style*="background: #FF3D4A"]:not([style*="padding: 0;"]):not([data-flat]){border-radius:16px !important;background:linear-gradient(150deg,#FF6670 0%,#FF3D4A 52%,#F03542 100%) !important;color:#12131F !important;box-shadow:-3px -3px 8px rgba(255,255,255,0.045),5px 6px 14px rgba(0,0,0,0.55),inset 1px 1px 0 rgba(255,255,255,0.30),inset -1px -1px 0 rgba(90,0,10,0.18) !important;transition:transform 160ms ease-out,box-shadow 160ms ease-out,background 160ms ease-out !important;will-change:transform} /*soft*/
 @media (hover:hover){button[style*="background: #FF3D4A"]:not([style*="padding: 0;"]):not([data-flat]):hover{transform:translateY(-2px);box-shadow:-3px -3px 9px rgba(255,255,255,0.05),6px 9px 18px rgba(0,0,0,0.6),inset 1px 1px 0 rgba(255,255,255,0.32),inset -1px -1px 0 rgba(90,0,10,0.18) !important}} /*soft*/
 button[style*="background: #FF3D4A"]:not([style*="padding: 0;"]):not([data-flat]):active{transform:translateY(0) scale(0.98) !important;background:linear-gradient(150deg,#F03542 0%,#FF3D4A 100%) !important;box-shadow:inset 3px 3px 7px rgba(110,0,15,0.45),inset -2px -2px 6px rgba(255,150,158,0.30) !important} /*soft*/
@@ -168,7 +175,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 <div style="display: flex; align-items: center; gap: 12px; height: 56px; padding: 0 16px; border-radius: 10px; border: 1px solid #FF3D4A; background: #161B2E">
 <span style="font-size: 17px; line-height: 24px; font-weight: 600; color: #A3A9C2">+7</span>
 <label for="ph" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Номер телефона</label>
-<input id="ph" inputMode="tel" placeholder="900 123-45-67" style="flex-grow: 1; min-width: 0; align-self: stretch; background: transparent; border: none; outline: none; color: #FFFFFF; font-family: inherit; font-size: 17px; line-height: 24px; font-weight: 600">
+<input id="ph" inputMode="tel" autocomplete="tel-national" maxLength="13" placeholder="900 123-45-67" style="flex-grow: 1; min-width: 0; align-self: stretch; background: transparent; border: none; outline: none; color: #FFFFFF; font-family: inherit; font-size: 17px; line-height: 24px; font-weight: 600">
 </div>
 <span style="font-size: 13px; line-height: 18px; font-weight: 500; color: #A3A9C2">Номер виден только тебе. Он нужен для входа и проверки аккаунта</span>
 <sc-if value="{{cnsShow}}" hint-placeholder-val="{{ false }}">
@@ -270,7 +277,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 </div>
 <div style="display: flex; flex-direction: column; gap: 8px">
 <label for="obd" style="font-size: 12px; line-height: 16px; font-weight: 500; color: #A3A9C2">Дата рождения</label>
-<input id="obd" inputMode="numeric" placeholder="ДД.ММ.ГГГГ" style="height: 48px; box-sizing: border-box; border-radius: 10px; border: 1px solid #262C44; background: #161B2E; color: #FFFFFF; padding: 0 16px; font-family: inherit; font-size: 15px; line-height: 22px; outline: none">
+<input id="obd" inputMode="numeric" maxLength="10" placeholder="ДД.ММ.ГГГГ" style="height: 48px; box-sizing: border-box; border-radius: 10px; border: 1px solid #262C44; background: #161B2E; color: #FFFFFF; padding: 0 16px; font-family: inherit; font-size: 15px; line-height: 22px; outline: none">
 <span style="font-size: 13px; line-height: 18px; font-weight: 500; color: #A3A9C2">Не показываем в профиле. Нужна, чтобы проверить возраст</span>
 </div>
 <button style="display: flex; align-items: center; gap: 12px; height: 56px; padding: 0 16px; border-radius: 10px; border: 1px solid #262C44; background: #161B2E; color: #FFFFFF; text-align: left">
@@ -362,7 +369,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 </div>
 </div>
 <sc-if value="{{showPhotoAi}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; flex-direction: column; gap: 12px; padding: 12px 16px; border-radius: 10px; border: 1px solid #A78BFA; background: #161B2E">
+<div data-anim="open" style="display: flex; flex-direction: column; gap: 12px; padding: 12px 16px; border-radius: 10px; border: 1px solid #A78BFA; background: #161B2E">
 <span style="display: flex; align-items: center; gap: 8px; font-size: 12px; line-height: 16px; font-weight: 600"><span style="width: 20px; height: 20px; border-radius: 999px; background: #A78BFA; color: #12131F; display: flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.9 2.1 2.1.9-2.1.9L19 21l-.9-2.1L16 18l2.1-.9zM5 3l.7 1.6L7.3 5.3l-1.6.7L5 7.6l-.7-1.6L2.7 5.3l1.6-.7z"></path></svg></span>Улучшить фото</span>
 <div style="display: flex; flex-wrap: wrap; gap: 8px">
 <sc-for list="{{photoFxList}}" as="f" hint-placeholder-count="5">
@@ -385,7 +392,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 <sc-if value="{{hasTitleText}}" hint-placeholder-val="{{ true }}"><button onClick="{{aiTitle}}" aria-label="Улучшить заголовок с помощью ИИ" style="position: absolute; right: 4px; top: 4px; width: 40px; height: 40px; border-radius: 999px; border: none; background: #A78BFA; color: #12131F; display: flex; align-items: center; justify-content: center; padding: 0"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.9 2.1 2.1.9-2.1.9L19 21l-.9-2.1L16 18l2.1-.9zM5 3l.7 1.6L7.3 5.3l-1.6.7L5 7.6l-.7-1.6L2.7 5.3l1.6-.7z"></path></svg></button></sc-if>
 </div>
 <sc-if value="{{showAiTitle}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; flex-direction: column; gap: 12px; padding: 12px 16px 12px 16px; border-radius: 10px; border: 1px solid #A78BFA; background: #161B2E">
+<div data-anim="open" style="display: flex; flex-direction: column; gap: 12px; padding: 12px 16px 12px 16px; border-radius: 10px; border: 1px solid #A78BFA; background: #161B2E">
 <span style="display: flex; align-items: center; gap: 8px; font-size: 12px; line-height: 16px; font-weight: 600; color: #FFFFFF"><span style="width: 20px; height: 20px; border-radius: 999px; background: #A78BFA; color: #12131F; display: flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.9 2.1 2.1.9-2.1.9L19 21l-.9-2.1L16 18l2.1-.9zM5 3l.7 1.6L7.3 5.3l-1.6.7L5 7.6l-.7-1.6L2.7 5.3l1.6-.7z"></path></svg></span>Вариант ИИ</span>
 <span style="font-size: 15px; line-height: 22px; color: #FFFFFF">{{aiTitleText}}</span>
 <div style="display: flex; gap: 8px">
@@ -405,7 +412,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 <sc-if value="{{hasDescText}}" hint-placeholder-val="{{ true }}"><button onClick="{{aiDesc}}" aria-label="Улучшить описание с помощью ИИ" style="position: absolute; right: 6px; top: 6px; width: 40px; height: 40px; border-radius: 999px; border: none; background: #A78BFA; color: #12131F; display: flex; align-items: center; justify-content: center; padding: 0"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.9 2.1 2.1.9-2.1.9L19 21l-.9-2.1L16 18l2.1-.9zM5 3l.7 1.6L7.3 5.3l-1.6.7L5 7.6l-.7-1.6L2.7 5.3l1.6-.7z"></path></svg></button></sc-if>
 </div>
 <sc-if value="{{showAiDesc}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; flex-direction: column; gap: 12px; padding: 12px 16px 12px 16px; border-radius: 10px; border: 1px solid #A78BFA; background: #161B2E">
+<div data-anim="open" style="display: flex; flex-direction: column; gap: 12px; padding: 12px 16px 12px 16px; border-radius: 10px; border: 1px solid #A78BFA; background: #161B2E">
 <span style="display: flex; align-items: center; gap: 8px; font-size: 12px; line-height: 16px; font-weight: 600; color: #FFFFFF"><span style="width: 20px; height: 20px; border-radius: 999px; background: #A78BFA; color: #12131F; display: flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.9 2.1 2.1.9-2.1.9L19 21l-.9-2.1L16 18l2.1-.9zM5 3l.7 1.6L7.3 5.3l-1.6.7L5 7.6l-.7-1.6L2.7 5.3l1.6-.7z"></path></svg></span>Вариант ИИ</span>
 <span style="font-size: 15px; line-height: 22px; color: #FFFFFF">{{aiDescText}}</span>
 <div style="display: flex; gap: 8px">
@@ -423,7 +430,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 <span style="font-size: 13px; line-height: 18px; font-weight: 500; color: #A3A9C2">{{swapLabel}}</span>
 <div style="display: flex; flex-wrap: wrap; gap: 8px">
 <sc-for list="{{swapTags}}" as="w" hint-placeholder-count="2">
-<span style="display: flex; align-items: center; gap: 4px; background: #FFFFFF; color: #12131F; border-radius: 999px; padding: 6px 8px 6px 12px; font-size: 14px; line-height: 20px; font-weight: 600">{{w}}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"></path></svg></span>
+<span data-anim="pop" style="display: flex; align-items: center; gap: 4px; background: #FFFFFF; color: #12131F; border-radius: 999px; padding: 6px 8px 6px 12px; font-size: 14px; line-height: 20px; font-weight: 600">{{w}}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"></path></svg></span>
 </sc-for>
 <button style="display: flex; align-items: center; gap: 4px; background: transparent; color: #FFFFFF; border: 1px dashed #262C44; border-radius: 999px; height: 44px; padding: 0 14px; font-size: 14px; line-height: 20px; font-weight: 700"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Добавить</button>
 </div>
@@ -455,10 +462,10 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 </sc-for>
 </div>
 <sc-if value="{{termCustom}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 16px; border-radius: 10px; border: 1px solid #FF3D4A; background: #161B2E">
+<div data-anim="open" style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 16px; border-radius: 10px; border: 1px solid #FF3D4A; background: #161B2E">
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A3A9C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4"></path></svg>
-<span style="font-size: 15px; line-height: 22px; color: #A3A9C2">Актуально до</span>
-<input aria-label="Актуально до" inputMode="numeric" placeholder="ДД.ММ.ГГГГ" value="{{termDate}}" onChange="{{onTermDate}}" style="flex-grow: 1; min-width: 0; align-self: stretch; background: transparent; border: none; outline: none; color: #FFFFFF; font-family: inherit; font-size: 15px; line-height: 22px; font-weight: 600; text-align: right">
+<span style="font-size: 15px; line-height: 22px; color: #A3A9C2; white-space: nowrap; flex-shrink: 0">Актуально до</span>
+<input aria-label="Актуально до" inputMode="numeric" maxLength="10" placeholder="ДД.ММ.ГГГГ" value="{{termDate}}" onChange="{{onTermDate}}" style="flex-grow: 1; min-width: 0; align-self: stretch; background: transparent; border: none; outline: none; color: #FFFFFF; font-family: inherit; font-size: 15px; line-height: 22px; font-weight: 600; text-align: right">
 </div>
 </sc-if>
 <span style="font-size: 13px; line-height: 18px; font-weight: 500; color: #A3A9C2">{{termHint}}</span>
@@ -470,7 +477,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 <sc-if value="{{hasAnyText}}" hint-placeholder-val="{{ true }}"><button onClick="{{aiCat}}" aria-label="Подобрать категорию с помощью ИИ" style="width: 40px; height: 40px; border-radius: 999px; border: none; background: #A78BFA; color: #12131F; display: flex; align-items: center; justify-content: center; padding: 0; flex-shrink: 0"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.9 2.1 2.1.9-2.1.9L19 21l-.9-2.1L16 18l2.1-.9zM5 3l.7 1.6L7.3 5.3l-1.6.7L5 7.6l-.7-1.6L2.7 5.3l1.6-.7z"></path></svg></button></sc-if>
 </div>
 <sc-if value="{{catByAi}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-bottom: 1px solid #262C44; font-size: 13px; line-height: 18px; font-weight: 500; color: #A3A9C2"><svg width="12" height="12" viewBox="0 0 24 24" fill="#A78BFA" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.9 2.1 2.1.9-2.1.9L19 21l-.9-2.1L16 18l2.1-.9zM5 3l.7 1.6L7.3 5.3l-1.6.7L5 7.6l-.7-1.6L2.7 5.3l1.6-.7z"></path></svg>ИИ подобрал по заголовку и описанию. Можно поменять вручную</div>
+<div data-anim="open" style="display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-bottom: 1px solid #262C44; font-size: 13px; line-height: 18px; font-weight: 500; color: #A3A9C2"><svg width="12" height="12" viewBox="0 0 24 24" fill="#A78BFA" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.9 2.1 2.1.9-2.1.9L19 21l-.9-2.1L16 18l2.1-.9zM5 3l.7 1.6L7.3 5.3l-1.6.7L5 7.6l-.7-1.6L2.7 5.3l1.6-.7z"></path></svg>ИИ подобрал по заголовку и описанию. Можно поменять вручную</div>
 </sc-if>
 <button style="display: flex; align-items: center; justify-content: space-between; height: 52px; padding: 0 16px; border: none; background: transparent; color: #FFFFFF; font-size: 15px; line-height: 22px; font-weight: 500">Город<span style="display: flex; align-items: center; gap: 4px; color: #A3A9C2">Владикавказ<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button>
 </div>
@@ -725,7 +732,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 <span style="width: 44px; height: 44px"></span>
 </header>
 
-<div style="flex-grow: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 24px; padding: 16px 16px 24px 16px">
+<div data-anim="form" style="flex-grow: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: 24px; padding: 16px 16px 24px 16px">
 
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); padding: 4px; background: #161B2E; border-radius: 999px; gap: 4px">
 <button data-flat="1" onClick="{{pickCan}}" style="height: 44px; border-radius: 999px; border: none; background: {{kCanBg}}; color: {{kCanFg}}; font-size: 15px; line-height: 20px; font-weight: 700">Могу</button>
@@ -766,7 +773,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 </div>
 </div>
 <sc-if value="{{showPhotoAi}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; flex-direction: column; gap: 12px; padding: 12px 16px; border-radius: 10px; border: 1px solid #A78BFA; background: #161B2E">
+<div data-anim="open" style="display: flex; flex-direction: column; gap: 12px; padding: 12px 16px; border-radius: 10px; border: 1px solid #A78BFA; background: #161B2E">
 <span style="display: flex; align-items: center; gap: 8px; font-size: 12px; line-height: 16px; font-weight: 600"><span style="width: 20px; height: 20px; border-radius: 999px; background: #A78BFA; color: #12131F; display: flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.9 2.1 2.1.9-2.1.9L19 21l-.9-2.1L16 18l2.1-.9zM5 3l.7 1.6L7.3 5.3l-1.6.7L5 7.6l-.7-1.6L2.7 5.3l1.6-.7z"></path></svg></span>Улучшить фото</span>
 <div style="display: flex; flex-wrap: wrap; gap: 8px">
 <sc-for list="{{photoFxList}}" as="f" hint-placeholder-count="5">
@@ -789,7 +796,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 <sc-if value="{{hasTitleText}}" hint-placeholder-val="{{ true }}"><button onClick="{{aiTitle}}" aria-label="Улучшить заголовок с помощью ИИ" style="position: absolute; right: 4px; top: 4px; width: 40px; height: 40px; border-radius: 999px; border: none; background: #A78BFA; color: #12131F; display: flex; align-items: center; justify-content: center; padding: 0"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.9 2.1 2.1.9-2.1.9L19 21l-.9-2.1L16 18l2.1-.9zM5 3l.7 1.6L7.3 5.3l-1.6.7L5 7.6l-.7-1.6L2.7 5.3l1.6-.7z"></path></svg></button></sc-if>
 </div>
 <sc-if value="{{showAiTitle}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; flex-direction: column; gap: 12px; padding: 12px 16px 12px 16px; border-radius: 10px; border: 1px solid #A78BFA; background: #161B2E">
+<div data-anim="open" style="display: flex; flex-direction: column; gap: 12px; padding: 12px 16px 12px 16px; border-radius: 10px; border: 1px solid #A78BFA; background: #161B2E">
 <span style="display: flex; align-items: center; gap: 8px; font-size: 12px; line-height: 16px; font-weight: 600; color: #FFFFFF"><span style="width: 20px; height: 20px; border-radius: 999px; background: #A78BFA; color: #12131F; display: flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.9 2.1 2.1.9-2.1.9L19 21l-.9-2.1L16 18l2.1-.9zM5 3l.7 1.6L7.3 5.3l-1.6.7L5 7.6l-.7-1.6L2.7 5.3l1.6-.7z"></path></svg></span>Вариант ИИ</span>
 <span style="font-size: 15px; line-height: 22px; color: #FFFFFF">{{aiTitleText}}</span>
 <div style="display: flex; gap: 8px">
@@ -809,7 +816,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 <sc-if value="{{hasDescText}}" hint-placeholder-val="{{ true }}"><button onClick="{{aiDesc}}" aria-label="Улучшить описание с помощью ИИ" style="position: absolute; right: 6px; top: 6px; width: 40px; height: 40px; border-radius: 999px; border: none; background: #A78BFA; color: #12131F; display: flex; align-items: center; justify-content: center; padding: 0"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.9 2.1 2.1.9-2.1.9L19 21l-.9-2.1L16 18l2.1-.9zM5 3l.7 1.6L7.3 5.3l-1.6.7L5 7.6l-.7-1.6L2.7 5.3l1.6-.7z"></path></svg></button></sc-if>
 </div>
 <sc-if value="{{showAiDesc}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; flex-direction: column; gap: 12px; padding: 12px 16px 12px 16px; border-radius: 10px; border: 1px solid #A78BFA; background: #161B2E">
+<div data-anim="open" style="display: flex; flex-direction: column; gap: 12px; padding: 12px 16px 12px 16px; border-radius: 10px; border: 1px solid #A78BFA; background: #161B2E">
 <span style="display: flex; align-items: center; gap: 8px; font-size: 12px; line-height: 16px; font-weight: 600; color: #FFFFFF"><span style="width: 20px; height: 20px; border-radius: 999px; background: #A78BFA; color: #12131F; display: flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.9 2.1 2.1.9-2.1.9L19 21l-.9-2.1L16 18l2.1-.9zM5 3l.7 1.6L7.3 5.3l-1.6.7L5 7.6l-.7-1.6L2.7 5.3l1.6-.7z"></path></svg></span>Вариант ИИ</span>
 <span style="font-size: 15px; line-height: 22px; color: #FFFFFF">{{aiDescText}}</span>
 <div style="display: flex; gap: 8px">
@@ -827,7 +834,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 <span style="font-size: 13px; line-height: 18px; font-weight: 500; color: #A3A9C2">{{swapLabel}}</span>
 <div style="display: flex; flex-wrap: wrap; gap: 8px">
 <sc-for list="{{swapTags}}" as="w" hint-placeholder-count="2">
-<span style="display: flex; align-items: center; gap: 4px; background: #FFFFFF; color: #12131F; border-radius: 999px; padding: 6px 8px 6px 12px; font-size: 14px; line-height: 20px; font-weight: 600">{{w}}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"></path></svg></span>
+<span data-anim="pop" style="display: flex; align-items: center; gap: 4px; background: #FFFFFF; color: #12131F; border-radius: 999px; padding: 6px 8px 6px 12px; font-size: 14px; line-height: 20px; font-weight: 600">{{w}}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M7 7l10 10M17 7 7 17"></path></svg></span>
 </sc-for>
 <button style="display: flex; align-items: center; gap: 4px; background: transparent; color: #FFFFFF; border: 1px dashed #262C44; border-radius: 999px; height: 44px; padding: 0 14px; font-size: 14px; line-height: 20px; font-weight: 700"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Добавить</button>
 </div>
@@ -859,10 +866,10 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 </sc-for>
 </div>
 <sc-if value="{{termCustom}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 16px; border-radius: 10px; border: 1px solid #FF3D4A; background: #161B2E">
+<div data-anim="open" style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 16px; border-radius: 10px; border: 1px solid #FF3D4A; background: #161B2E">
 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A3A9C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v14H4zM4 10h16M8 3v4M16 3v4"></path></svg>
-<span style="font-size: 15px; line-height: 22px; color: #A3A9C2">Актуально до</span>
-<input aria-label="Актуально до" inputMode="numeric" placeholder="ДД.ММ.ГГГГ" value="{{termDate}}" onChange="{{onTermDate}}" style="flex-grow: 1; min-width: 0; align-self: stretch; background: transparent; border: none; outline: none; color: #FFFFFF; font-family: inherit; font-size: 15px; line-height: 22px; font-weight: 600; text-align: right">
+<span style="font-size: 15px; line-height: 22px; color: #A3A9C2; white-space: nowrap; flex-shrink: 0">Актуально до</span>
+<input aria-label="Актуально до" inputMode="numeric" maxLength="10" placeholder="ДД.ММ.ГГГГ" value="{{termDate}}" onChange="{{onTermDate}}" style="flex-grow: 1; min-width: 0; align-self: stretch; background: transparent; border: none; outline: none; color: #FFFFFF; font-family: inherit; font-size: 15px; line-height: 22px; font-weight: 600; text-align: right">
 </div>
 </sc-if>
 <span style="font-size: 13px; line-height: 18px; font-weight: 500; color: #A3A9C2">{{termHint}}</span>
@@ -874,7 +881,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 <sc-if value="{{hasAnyText}}" hint-placeholder-val="{{ true }}"><button onClick="{{aiCat}}" aria-label="Подобрать категорию с помощью ИИ" style="width: 40px; height: 40px; border-radius: 999px; border: none; background: #A78BFA; color: #12131F; display: flex; align-items: center; justify-content: center; padding: 0; flex-shrink: 0"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.9 2.1 2.1.9-2.1.9L19 21l-.9-2.1L16 18l2.1-.9zM5 3l.7 1.6L7.3 5.3l-1.6.7L5 7.6l-.7-1.6L2.7 5.3l1.6-.7z"></path></svg></button></sc-if>
 </div>
 <sc-if value="{{catByAi}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-bottom: 1px solid #262C44; font-size: 13px; line-height: 18px; font-weight: 500; color: #A3A9C2"><svg width="12" height="12" viewBox="0 0 24 24" fill="#A78BFA" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.9 2.1 2.1.9-2.1.9L19 21l-.9-2.1L16 18l2.1-.9zM5 3l.7 1.6L7.3 5.3l-1.6.7L5 7.6l-.7-1.6L2.7 5.3l1.6-.7z"></path></svg>ИИ подобрал по заголовку и описанию. Можно поменять вручную</div>
+<div data-anim="open" style="display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-bottom: 1px solid #262C44; font-size: 13px; line-height: 18px; font-weight: 500; color: #A3A9C2"><svg width="12" height="12" viewBox="0 0 24 24" fill="#A78BFA" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8zM19 15l.9 2.1 2.1.9-2.1.9L19 21l-.9-2.1L16 18l2.1-.9zM5 3l.7 1.6L7.3 5.3l-1.6.7L5 7.6l-.7-1.6L2.7 5.3l1.6-.7z"></path></svg>ИИ подобрал по заголовку и описанию. Можно поменять вручную</div>
 </sc-if>
 <button style="display: flex; align-items: center; justify-content: space-between; height: 52px; padding: 0 16px; border: none; background: transparent; color: #FFFFFF; font-size: 15px; line-height: 22px; font-weight: 500">Город<span style="display: flex; align-items: center; gap: 4px; color: #A3A9C2">Владикавказ<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg></span></button>
 </div>
@@ -2567,7 +2574,14 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 
 class Component extends DCLogic {
   _dealScroll() { var st = this.state || {}; var k = st.screen === 'deal' ? [st.ds, st.rate || 0, JSON.stringify(st.reviews || {}), (st.dsp || {}).stage, (st.msgs || []).length].join('|') : ''; if (k && k !== this._dsk) { setTimeout(function () { var e = document.getElementById('dealScroll'); if (e) e.scrollTop = e.scrollHeight; }, 30); } this._dsk = k; }
-  componentDidMount() { this._syncDemo(); this._syncEntry(); if (this.state == null || this.state.spIdx == null) this.setState({ spIdx: Math.floor(Math.random() * 10) }); this._spArm(); }
+  _masks() {
+    if (this._mk || typeof document === 'undefined') return; this._mk = true;
+    var ph = function (t) { var d = String(t).replace(/\D/g, ''); if (d[0] === '7' || d[0] === '8') d = d.slice(1); if (d && d[0] !== '9') d = ''; d = d.slice(0, 10); var o = d.slice(0, 3); if (d.length > 3) o += ' ' + d.slice(3, 6); if (d.length > 6) o += '-' + d.slice(6, 8); if (d.length > 8) o += '-' + d.slice(8, 10); return o; };
+    var dt = function (t, prev) { var back = t.length < prev.length; var d = String(t).replace(/\D/g, ''); if (d.length >= 1 && +d[0] > 3) d = '0' + d; if (d.length >= 3 && +d[2] > 1) d = d.slice(0, 2) + '0' + d.slice(2); d = d.slice(0, 8); var o = d.slice(0, 2); if (d.length > 2 || (!back && d.length === 2)) o += '.'; o += d.slice(2, 4); if (d.length > 4 || (!back && d.length === 4)) o += '.'; o += d.slice(4, 8); return o; };
+    var prevOf = new WeakMap();
+    document.addEventListener('input', function (e) { var el = e.target; if (!el || el.tagName !== 'INPUT') return; var p = el.getAttribute('placeholder') || ''; var v; if (p === '900 123-45-67') v = ph(el.value); else if (p === 'ДД.ММ.ГГГГ') v = dt(el.value, prevOf.get(el) || ''); else return; if (v !== el.value) el.value = v; prevOf.set(el, v); }, true);
+  }
+  componentDidMount() { this._masks(); this._syncDemo(); this._syncEntry(); if (this.state == null || this.state.spIdx == null) this.setState({ spIdx: Math.floor(Math.random() * 10) }); this._spArm(); }
   _spOn() { var st = this.state || {}; return !!((this.props.onboarding || st.forceOnb) && !st.onbDone && !(st.ob > 0) && (st.launchDone || st.launchOut || !!st.bioByPhone)); }
   _spArm() { var self = this, st = this.state || {}, key = (st.spIdx == null ? '-' : st.spIdx) + '|' + this._spOn(); if (key === this._spKey && this._sp) return; this._spKey = key; if (this._sp) clearTimeout(this._sp); this._sp = setTimeout(function () { self._sp = null; var s2 = self.state || {}; if (self._spOn()) self.setState({ spIdx: ((s2.spIdx || 0) + 1) % 10, spFresh: false }); else { self._spKey = null; self._spArm(); } }, 6000); }
   componentDidUpdate(pp) { this._syncDemo(); this._spArm(); this._dealScroll(); if (pp && (pp.onboarding !== this.props.onboarding || pp.entry !== this.props.entry || pp.bio !== this.props.bio || pp.bioType !== this.props.bioType || pp.pinLock !== this.props.pinLock)) { if (this._lt) { clearTimeout(this._lt); this._lt = null; } if (this._lt2) clearTimeout(this._lt2); this.setState({ ob: 0, obSkipCan: false, obSkipWant: false, onbDone: false, launchDone: false, launchOut: false, pinAuto: false, pinLeave: false, bioByPhone: false, entryStage: null, pin: '', pinState: null, pinErr: 0, pinHelp: false, bioState: null, bioOn: false, appealSent: false, delRestored: false }); } this._syncEntry(); }
