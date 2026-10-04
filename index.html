@@ -172,10 +172,10 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 
 <!-- телефон -->
 <sc-if value="{{obPhone}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; align-items: center; gap: 0; height: 56px; padding: 0 16px; border-radius: 10px; border: 1px solid #FF3D4A; background: #161B2E">
-<span style="font-size: 17px; line-height: 24px; font-weight: 600; color: #A3A9C2; white-space: nowrap">+7 <span style="color: #FFFFFF">9</span></span>
+<div style="display: flex; align-items: center; gap: 12px; height: 56px; padding: 0 16px; border-radius: 10px; border: 1px solid #FF3D4A; background: #161B2E">
+<span style="font-size: 17px; line-height: 24px; font-weight: 600; color: #A3A9C2; white-space: nowrap">+7</span>
 <label for="ph" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Номер телефона</label>
-<input id="ph" inputMode="tel" autocomplete="tel-national" maxLength="12" placeholder="00 123-45-67" style="flex-grow: 1; min-width: 0; align-self: stretch; background: transparent; border: none; outline: none; color: #FFFFFF; font-family: inherit; font-size: 17px; line-height: 24px; font-weight: 600">
+<input id="ph" inputMode="tel" autocomplete="tel-national" placeholder="900 123-45-67" style="flex-grow: 1; min-width: 0; align-self: stretch; background: transparent; border: none; outline: none; color: #FFFFFF; font-family: inherit; font-size: 17px; line-height: 24px; font-weight: 600">
 </div>
 <span style="font-size: 13px; line-height: 18px; font-weight: 500; color: #A3A9C2">Номер виден только тебе. Он нужен для входа и проверки аккаунта</span>
 <sc-if value="{{cnsShow}}" hint-placeholder-val="{{ false }}">
@@ -253,10 +253,11 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 <sc-if value="{{obProfile}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; flex-direction: column; align-items: center; gap: 8px">
 <button onClick="{{addObAva}}" aria-label="Добавить фото профиля" style="position: relative; width: 112px; height: 112px; border: none; background: transparent; padding: 0"><span style="position: absolute; left: 0; top: 0; width: 112px; height: 112px; box-sizing: border-box; border-radius: 999px; border: 2px dashed #262C44; background: #161B2E; color: #A3A9C2; display: flex; align-items: center; justify-content: center; overflow: hidden">
-<sc-if value="{{obAvatar}}" hint-placeholder-val="{{ false }}"><img src="media/70f324040d622c32788dc789547ef2bd" alt="" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover"></sc-if>
+<sc-if value="{{obAvatar}}" hint-placeholder-val="{{ false }}"><img src="{{myAvaSrc}}" alt="" style="position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover"></sc-if>
 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4zM12 16.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"></path></svg>
 </span><span style="position: absolute; right: 0; bottom: 0; width: 32px; height: 32px; border-radius: 999px; border: 3px solid #0E1220; background: #FF3D4A; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span>
 </button>
+<input id="avaFile" type="file" accept="image/*" onChange="{{onAvaFile}}" aria-hidden="true" tabindex="-1" style="display: none">
 <span style="font-size: 13px; line-height: 18px; font-weight: 500; color: #A3A9C2">{{obAvaHint}}</span>
 </div>
 
@@ -546,7 +547,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 </div>
 </sc-if>
 <sc-if value="{{isSearch}}" hint-placeholder-val="{{ false }}">
-<div style="width: 100%; height: 44px; box-sizing: border-box; border-radius: 999px; background: #161B2E; display: flex; align-items: center; gap: 8px; padding: 0 4px 0 16px; color: #A3A9C2; border: 1px solid #FF3D4A">
+<div style="animation: slideInR 220ms ease-out; width: 100%; height: 44px; box-sizing: border-box; border-radius: 999px; background: #161B2E; display: flex; align-items: center; gap: 8px; padding: 0 4px 0 16px; color: #A3A9C2; border: 1px solid #FF3D4A">
 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-4.35-4.35"></path></svg>
 <label for="sq" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Поиск</label>
 <input id="sq" placeholder="{{searchPh}}" value="{{sqVal}}" onChange="{{onSq}}" onKeyDown="{{onSqKey}}" autoFocus="{{ true }}" style="flex-grow: 1; min-width: 0; align-self: stretch; background: transparent; border: none; outline: none; color: #FFFFFF; font-family: inherit; font-size: 15px; line-height: 22px">
@@ -562,7 +563,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 
 <!-- ================= ЛЕНТА ================= -->
 <sc-if value="{{isFeed}}" hint-placeholder-val="{{ true }}">
-<div style="display: flex; flex-direction: column; flex-grow: 1; min-height: 0">
+<div data-pane="feed" style="animation: slideInR 220ms ease-out; display: flex; flex-direction: column; flex-grow: 1; min-height: 0">
 
 <sc-if value="{{legacyMutual}}" hint-placeholder-val="{{ false }}">
 <div style="display: flex; align-items: center; gap: 8px; padding: 8px 16px 0 16px; flex-shrink: 0">
@@ -902,7 +903,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 <button onClick="{{goNsetFromNotif}}" aria-label="Настройки уведомлений" style="width: 44px; height: 44px; border: none; background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center; padding: 0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"></path></svg></button>
 </header>
 
-<nav aria-label="Группы уведомлений" style="display: flex; gap: 8px; padding: 0 16px 4px 16px; overflow-x: auto; flex-shrink: 0">
+<nav data-tabs="nTab" aria-label="Группы уведомлений" style="display: flex; gap: 8px; padding: 0 16px 4px 16px; overflow-x: auto; flex-shrink: 0">
 <sc-for list="{{nTabs}}" as="g" hint-placeholder-count="4">
 <button data-flat="1" onClick="{{g.pick}}" aria-pressed="{{g.on}}" style="flex-shrink: 0; display: flex; align-items: center; gap: 6px; height: 44px; padding: 0 {{g.padR}} 0 14px; border-radius: 999px; border: 1px solid {{g.bd}}; background: {{g.bg}}; color: {{g.fg}}; font-size: 14px; line-height: 20px; font-weight: 700">{{g.label}}
 <sc-if value="{{g.hasCount}}" hint-placeholder-val="{{ false }}"><span style="min-width: 20px; height: 20px; box-sizing: border-box; padding: 0 6px; border-radius: 999px; background: #FF3D4A; color: #12131F; font-size: 12px; line-height: 20px; font-weight: 700; text-align: center">{{g.count}}</span></sc-if>
@@ -958,7 +959,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 
 <!-- ================= ПОИСК ================= -->
 <sc-if value="{{isSearch}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; flex-direction: column; flex-grow: 1; min-height: 0; position: relative; border-top: 1px solid #262C44">
+<div style="animation: slideInR 220ms ease-out; display: flex; flex-direction: column; flex-grow: 1; min-height: 0; position: relative; border-top: 1px solid #262C44">
 
 <!-- 1. Пусто -->
 <sc-if value="{{sIdle}}" hint-placeholder-val="{{ true }}">
@@ -1539,8 +1540,8 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 
 <!-- ================= ЧАТЫ ================= -->
 <sc-if value="{{isChats}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; flex-direction: column; flex-grow: 1; min-height: 0">
-<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-bottom: 1px solid #262C44; flex-shrink: 0">
+<div style="animation: slideInR 220ms ease-out; display: flex; flex-direction: column; flex-grow: 1; min-height: 0">
+<div data-tabs="chatTab" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-bottom: 1px solid #262C44; flex-shrink: 0">
 <button onClick="{{goChatDeals}}" style="height: 48px; background: transparent; border: none; border-bottom: 2px solid {{chDealsLine}}; color: {{chDealsFg}}; padding: 0; font-size: 15px; line-height: 20px; font-weight: 700">Чаты обменов</button>
 <button onClick="{{goChatMsgs}}" style="height: 48px; background: transparent; border: none; border-bottom: 2px solid {{chMsgsLine}}; color: {{chMsgsFg}}; padding: 0; font-size: 15px; line-height: 20px; font-weight: 700">Сообщения</button>
 </div>
@@ -1588,7 +1589,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 
 <div style="display: flex; align-items: center; gap: 16px; padding: 16px 16px 0 16px">
 <div style="width: 88px; height: 88px; border-radius: 999px; border: 2px solid {{pRing}}; padding: 4px; box-sizing: border-box; flex-shrink: 0">
-<sc-if value="{{pShowImg}}" hint-placeholder-val="{{ true }}"><img src="media/70f324040d622c32788dc789547ef2bd" alt="Фото профиля" style="width: 100%; height: 100%; border-radius: 999px; object-fit: cover; display: block"></sc-if><sc-if value="{{pShowInit}}" hint-placeholder-val="{{ false }}"><span style="width: 100%; height: 100%; border-radius: 999px; background: {{pAvBg}}; color: #12131F; display: flex; align-items: center; justify-content: center; font-size: 28px; line-height: 40px; font-weight: 800">{{pInitial}}</span></sc-if>
+<sc-if value="{{pShowImg}}" hint-placeholder-val="{{ true }}"><img src="{{myAvaSrc}}" alt="Фото профиля" style="width: 100%; height: 100%; border-radius: 999px; object-fit: cover; display: block"></sc-if><sc-if value="{{pShowInit}}" hint-placeholder-val="{{ false }}"><span style="width: 100%; height: 100%; border-radius: 999px; background: {{pAvBg}}; color: #12131F; display: flex; align-items: center; justify-content: center; font-size: 28px; line-height: 40px; font-weight: 800">{{pInitial}}</span></sc-if>
 </div>
 <sc-if value="{{pSvc}}" hint-placeholder-val="{{ false }}"><div style="display: flex; flex-direction: column; gap: 2px; flex-grow: 1; padding-left: 8px"><span style="font-size: 17px; line-height: 24px; font-weight: 700">{{pS2}} подписчиков</span><span style="font-size: 14px; line-height: 20px; color: #A3A9C2">Идеи для обмена в твоём городе. По идее не меняются — по ней создают объявление</span></div></sc-if>
 <sc-if value="{{pNotSvc}}" hint-placeholder-val="{{ true }}"><div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; flex-grow: 1; text-align: center">
@@ -1656,7 +1657,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 </div>
 </sc-if>
 <sc-if value="{{pNotBlocked}}" hint-placeholder-val="{{ true }}">
-<div role="tablist" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-bottom: 1px solid #262C44; flex-shrink: 0">
+<div data-tabs="pTab" role="tablist" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-bottom: 1px solid #262C44; flex-shrink: 0">
 <sc-for list="{{pTabs}}" as="pt" hint-placeholder-count="3">
 <button role="tab" onClick="{{pt.pick}}" aria-selected="{{pt.on}}" style="height: 48px; background: transparent; border: none; border-bottom: 2px solid {{pt.line}}; color: {{pt.fg}}; padding: 0; font-size: 15px; line-height: 20px; font-weight: 700">{{pt.label}}</button>
 </sc-for>
@@ -1949,7 +1950,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 <span style="justify-self: center; font-size: 17px; line-height: 24px; font-weight: 700">Избранное</span>
 <span></span>
 </header>
-<div style="display: flex; gap: 8px; padding: 12px 16px; flex-shrink: 0">
+<div data-tabs="favTab" style="display: flex; gap: 8px; padding: 12px 16px; flex-shrink: 0">
 <sc-for list="{{favTabs}}" as="ft" hint-placeholder-count="3">
 <button data-flat="1" onClick="{{ft.pick}}" aria-pressed="{{ft.on}}" style="height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid {{ft.bd}}; background: {{ft.bg}}; color: {{ft.fg}}; font-size: 14px; line-height: 20px; font-weight: 700">{{ft.label}}</button>
 </sc-for>
@@ -2135,7 +2136,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 <div style="display: flex; flex-direction: column; border-radius: 20px; background: #161B2E; overflow: hidden">
 <sc-for list="{{acctRows}}" as="ar" hint-placeholder-count="1">
 <button onClick="{{ar.pick}}" style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: none; border-bottom: 1px solid #262C44; background: transparent; color: #FFFFFF; text-align: left">
-<sc-if value="{{ar.hasImg}}" hint-placeholder-val="{{ true }}"><img src="media/70f324040d622c32788dc789547ef2bd" alt="" style="width: 40px; height: 40px; border-radius: 999px; object-fit: cover; flex-shrink: 0"></sc-if>
+<sc-if value="{{ar.hasImg}}" hint-placeholder-val="{{ true }}"><img src="{{myAvaSrc}}" alt="" style="width: 40px; height: 40px; border-radius: 999px; object-fit: cover; flex-shrink: 0"></sc-if>
 <sc-if value="{{ar.noImg}}" hint-placeholder-val="{{ false }}"><span style="width: 40px; height: 40px; border-radius: 999px; background: #FFB020; color: #12131F; display: flex; align-items: center; justify-content: center; font-size: 17px; line-height: 24px; font-weight: 800; flex-shrink: 0">К</span></sc-if>
 <span style="display: flex; flex-direction: column; flex-grow: 1; min-width: 0"><span style="font-size: 15px; line-height: 22px; font-weight: 700">{{ar.name}}</span><span style="font-size: 13px; line-height: 18px; font-weight: 500; color: #A3A9C2">{{ar.sub}}</span></span>
 <span aria-label="{{ar.aria}}" style="width: 24px; height: 24px; box-sizing: border-box; border-radius: 999px; border: 2px solid {{ar.bd}}; background: {{ar.bg}}; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><sc-if value="{{ar.on}}" hint-placeholder-val="{{ true }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg></sc-if></span>
@@ -2324,7 +2325,7 @@ button[style*="background: transparent"][style*="border: 1px solid"]:focus-visib
 <button onClick="{{goSearch}}" aria-label="Поиск" style="height: 56px; background: transparent; border: none; color: {{nSearchT}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 0; font-size: 12px; line-height: 16px; font-weight: 600; position: relative"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM21 21l-4.35-4.35"></path></svg>Поиск</button>
 <div style="display: flex; justify-content: center"><button onClick="{{openPlus}}" aria-label="Опубликовать объявление" aria-haspopup="dialog" style="width: 56px; height: 56px; border-radius: 999px; border: none; background: #FF3D4A; color: #12131F; display: flex; align-items: center; justify-content: center; padding: 0; box-shadow: 0 6px 16px rgba(255,61,74,0.35)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></div>
 <button onClick="{{goChats}}" aria-label="Чаты" style="height: 56px; background: transparent; border: none; color: {{nChats}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 0; font-size: 12px; line-height: 16px; font-weight: 600; position: relative"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"></path></svg>Чаты<sc-if value="{{hasChatBadge}}" hint-placeholder-val="{{ true }}"><span style="position: absolute; top: 4px; left: 50%; margin-left: 4px; min-width: 20px; height: 20px; box-sizing: border-box; padding: 0 4px; border-radius: 999px; background: #FF3D4A; border: 2px solid #0E1220; color: #12131F; font-size: 12px; line-height: 16px; font-weight: 600; text-align: center">2</span></sc-if></button>
-<button onClick="{{goProfile}}" aria-label="Профиль" style="height: 56px; background: transparent; border: none; color: {{nProfT}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 0; font-size: 12px; line-height: 16px; font-weight: 600"><span style="width: 26px; height: 26px; border-radius: 999px; border: 2px solid {{nProfRing}}; box-sizing: border-box; overflow: hidden; display: block"><sc-if value="{{hdrPhoto}}" hint-placeholder-val="{{ true }}"><img src="media/70f324040d622c32788dc789547ef2bd" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block"></sc-if><sc-if value="{{hdrBiz}}" hint-placeholder-val="{{ false }}"><span style="width: 100%; height: 100%; background: #FFB020; color: #12131F; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800">К</span></sc-if></span>Профиль</button>
+<button onClick="{{goProfile}}" aria-label="Профиль" style="height: 56px; background: transparent; border: none; color: {{nProfT}}; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 0; font-size: 12px; line-height: 16px; font-weight: 600"><span style="width: 26px; height: 26px; border-radius: 999px; border: 2px solid {{nProfRing}}; box-sizing: border-box; overflow: hidden; display: block"><sc-if value="{{hdrPhoto}}" hint-placeholder-val="{{ true }}"><img src="{{myAvaSrc}}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block"></sc-if><sc-if value="{{hdrBiz}}" hint-placeholder-val="{{ false }}"><span style="width: 100%; height: 100%; background: #FFB020; color: #12131F; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800">К</span></sc-if></span>Профиль</button>
 </nav>
 </sc-if>
 </div>
@@ -2576,15 +2577,33 @@ class Component extends DCLogic {
   _dealScroll() { var st = this.state || {}; var k = st.screen === 'deal' ? [st.ds, st.rate || 0, JSON.stringify(st.reviews || {}), (st.dsp || {}).stage, (st.msgs || []).length].join('|') : ''; if (k && k !== this._dsk) { setTimeout(function () { var e = document.getElementById('dealScroll'); if (e) e.scrollTop = e.scrollHeight; }, 30); } this._dsk = k; }
   _masks() {
     if (this._mk || typeof document === 'undefined') return; this._mk = true;
-    var ph = function (t) { var d = String(t).replace(/\D/g, ''); if (d.length >= 11 && (d[0] === '7' || d[0] === '8')) d = d.slice(1); if (d.length >= 10 && d[0] === '9') d = d.slice(1); d = d.slice(0, 9); var o = d.slice(0, 2); if (d.length > 2) o += ' ' + d.slice(2, 5); if (d.length > 5) o += '-' + d.slice(5, 7); if (d.length > 7) o += '-' + d.slice(7, 9); return o; };
+    var ph = function (t) { var d = String(t).replace(/\D/g, ''); if (d.length === 11 && (d[0] === '7' || d[0] === '8')) d = d.slice(1); d = d.slice(0, 10); var o = d.slice(0, 3); if (d.length > 3) o += ' ' + d.slice(3, 6); if (d.length > 6) o += '-' + d.slice(6, 8); if (d.length > 8) o += '-' + d.slice(8, 10); return o; };
     var dt = function (t, prev) { var back = t.length < prev.length; var d = String(t).replace(/\D/g, ''); if (d.length >= 1 && +d[0] > 3) d = '0' + d; if (d.length >= 3 && +d[2] > 1) d = d.slice(0, 2) + '0' + d.slice(2); d = d.slice(0, 8); var o = d.slice(0, 2); if (d.length > 2 || (!back && d.length === 2)) o += '.'; o += d.slice(2, 4); if (d.length > 4 || (!back && d.length === 4)) o += '.'; o += d.slice(4, 8); return o; };
     var prevOf = new WeakMap();
-    document.addEventListener('input', function (e) { var el = e.target; if (!el || el.tagName !== 'INPUT') return; var p = el.getAttribute('placeholder') || ''; var v; if (p === '00 123-45-67') v = ph(el.value); else if (p === 'ДД.ММ.ГГГГ') v = dt(el.value, prevOf.get(el) || ''); else return; if (v !== el.value) el.value = v; prevOf.set(el, v); }, true);
+    document.addEventListener('input', function (e) { var el = e.target; if (!el || el.tagName !== 'INPUT') return; var p = el.getAttribute('placeholder') || ''; var v; if (p === '900 123-45-67') v = ph(el.value); else if (p === 'ДД.ММ.ГГГГ') v = dt(el.value, prevOf.get(el) || ''); else return; if (v !== el.value) el.value = v; prevOf.set(el, v); }, true);
   }
-  componentDidMount() { this._masks(); this._syncDemo(); this._syncEntry(); if (this.state == null || this.state.spIdx == null) this.setState({ spIdx: Math.floor(Math.random() * 10) }); this._spArm(); }
+  componentDidMount() { this._masks(); this._tabFx(); this._syncDemo(); this._syncEntry(); if (this.state == null || this.state.spIdx == null) this.setState({ spIdx: Math.floor(Math.random() * 10) }); this._spArm(); }
   _spOn() { var st = this.state || {}; return !!((this.props.onboarding || st.forceOnb) && !st.onbDone && !(st.ob > 0) && (st.launchDone || st.launchOut || !!st.bioByPhone)); }
   _spArm() { var self = this, st = this.state || {}, key = (st.spIdx == null ? '-' : st.spIdx) + '|' + this._spOn(); if (key === this._spKey && this._sp) return; this._spKey = key; if (this._sp) clearTimeout(this._sp); this._sp = setTimeout(function () { self._sp = null; var s2 = self.state || {}; if (self._spOn()) self.setState({ spIdx: ((s2.spIdx || 0) + 1) % 10, spFresh: false }); else { self._spKey = null; self._spArm(); } }, 6000); }
-  componentDidUpdate(pp) { this._syncDemo(); this._spArm(); this._dealScroll(); if (pp && (pp.onboarding !== this.props.onboarding || pp.entry !== this.props.entry || pp.bio !== this.props.bio || pp.bioType !== this.props.bioType || pp.pinLock !== this.props.pinLock)) { if (this._lt) { clearTimeout(this._lt); this._lt = null; } if (this._lt2) clearTimeout(this._lt2); this.setState({ ob: 0, obSkipCan: false, obSkipWant: false, onbDone: false, launchDone: false, launchOut: false, pinAuto: false, pinLeave: false, bioByPhone: false, entryStage: null, pin: '', pinState: null, pinErr: 0, pinHelp: false, bioState: null, bioOn: false, appealSent: false, delRestored: false }); } this._syncEntry(); }
+  // Switching tabs inside a screen (Для тебя / Подписки / Хочу / Могу, profile, chats,
+  // notifications, favourites): the content slides in from the side of the chosen tab.
+  _tabFx() {
+    if (typeof document === 'undefined') return;
+    var st = this.state || {}, prev = this._tp || {}, self = this;
+    var ORD = { feedFilter: ['random', 'subs', 'want', 'can'], pTab: ['can', 'want', 'rev'], chatTab: ['deals', 'msgs'], nTab: ['all', 'deal', 'act', 'match'], favTab: ['all', 'can', 'want'], feedView: null };
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this._tp = { screen: st.screen };
+    Object.keys(ORD).forEach(function (k) {
+      self._tp[k] = st[k];
+      if (!(k in prev) || prev[k] === st[k] || prev.screen !== st.screen) return;
+      var o = ORD[k], dir = o ? (o.indexOf(st[k]) >= o.indexOf(prev[k]) ? 1 : -1) : 0;
+      var els = [];
+      if (k === 'feedFilter' || k === 'feedView') { var pane = document.querySelector('[data-pane="feed"]'); if (pane) els.push(pane); }
+      else { var t = document.querySelector('[data-tabs="' + k + '"]'); for (var n = t && t.nextElementSibling; n; n = n.nextElementSibling) els.push(n); }
+      els.forEach(function (el) { if (!el.animate) return; el.animate(dir && !reduce ? [{ opacity: 0, transform: 'translateX(' + 28 * dir + 'px)' }, { opacity: 1, transform: 'none' }] : [{ opacity: 0 }, { opacity: 1 }], { duration: 220, easing: 'cubic-bezier(.2,.8,.2,1)' }); });
+    });
+  }
+  componentDidUpdate(pp) { this._tabFx(); this._syncDemo(); this._spArm(); this._dealScroll(); if (pp && (pp.onboarding !== this.props.onboarding || pp.entry !== this.props.entry || pp.bio !== this.props.bio || pp.bioType !== this.props.bioType || pp.pinLock !== this.props.pinLock)) { if (this._lt) { clearTimeout(this._lt); this._lt = null; } if (this._lt2) clearTimeout(this._lt2); this.setState({ ob: 0, obSkipCan: false, obSkipWant: false, onbDone: false, launchDone: false, launchOut: false, pinAuto: false, pinLeave: false, bioByPhone: false, entryStage: null, pin: '', pinState: null, pinErr: 0, pinHelp: false, bioState: null, bioOn: false, appealSent: false, delRestored: false }); } this._syncEntry(); }
   _syncEntry() {
     var self = this, st = this.state || {};
     var on = !!(this.props.onboarding || st.forceOnb) && !st.onbDone;
@@ -3231,7 +3250,9 @@ class Component extends DCLogic {
       obHelpItems: [['Отправить СМС ещё раз', 'Доступно через 0:45', 'resend', INK], ['Позвонить с кодом', 'Робот продиктует 4 цифры, отвечать не нужно', 'call', INK], ['Получить код в Telegram', 'Если номер привязан к Telegram', 'tg', INK], ['Изменить номер', '', 'phone', INK], ['Написать в поддержку', '', 'sup', PINKT]].map(function (h) { var act = h[2] === 'resend' ? { obHelp: false, obResent: true, obHelpNote: 'СМС отправлено ещё раз' } : h[2] === 'call' ? { obHelp: false, obHelpNote: 'Звоним с номера +7 800 ••• 00-01 — код продиктует робот' } : h[2] === 'tg' ? { obHelp: false, obHelpNote: 'Код отправлен в Telegram' } : h[2] === 'phone' ? { obHelp: false, obHelpNote: null, ob: 1 } : { obHelp: false, onbDone: true, forceOnb: false, screen: 'support', supBack: 'menu', supTopicOpen: true, supTopic: 'Аккаунт и вход' }; return { label: h[0], sub: h[1], hasSub: !!h[1], fg: h[3], pick: set(act) }; }), obType: OB === 3, obProfile: OB === 4, obPersonal: (st.obT || 'personal') === 'personal', obBiz: st.obT === 'biz', obList: OB === 6 || OB === 7, obDone: OB === 8, obDoneMatches: OB === 8 && !(st.obSkipCan && st.obSkipWant), obDoneEmpty: OB === 8 && !!(st.obSkipCan || st.obSkipWant), obDoneEmptyTitle: st.obSkipCan && st.obSkipWant ? 'Объявления можно добавить позже' : st.obSkipCan ? 'Добавь «Могу», когда будет удобно' : 'Добавь «Хочу», когда будет удобно', obDoneEmptyText: 'Кнопка «+» в шапке ленты. С «Могу» и «Хочу» сервис точнее подбирает пары для обмена',
       obNickVal: st.obNick != null ? st.obNick : '', onObNick: function (e) { self.setState({ obNick: e.target.value.replace(/[^a-zA-Z0-9_.]/g, '').toLowerCase() }); }, obNickOk: !!st.obNick,
       obAvaHint: st.obT === 'biz' ? 'Логотип или фото заведения' : 'Фото профиля — людям проще доверять',
-      obAvatar: !!st.obAva, addObAva: set({ obAva: true }),
+      obAvatar: !!st.obAva, addObAva: function () { var f = typeof document !== 'undefined' && document.getElementById('avaFile'); if (f) { f.value = ''; f.click(); } else self.setState({ obAva: true }); },
+      onAvaFile: function (e) { var file = e.target.files && e.target.files[0]; if (!file) return; var img = new Image(); var url = URL.createObjectURL(file); img.onload = function () { var n = 320, c = document.createElement('canvas'); var k = Math.max(n / img.width, n / img.height); c.width = n; c.height = n; var ctx = c.getContext('2d'); ctx.drawImage(img, (n - img.width * k) / 2, (n - img.height * k) / 2, img.width * k, img.height * k); var data = c.toDataURL('image/jpeg', 0.85); URL.revokeObjectURL(url); try { localStorage.setItem('mh.ava', data); } catch (x) {} self.setState({ obAva: true, myAva: data }); }; img.onerror = function () { URL.revokeObjectURL(url); }; img.src = url; },
+      myAvaSrc: st.myAva || (function () { try { return localStorage.getItem('mh.ava'); } catch (x) { return null; } })() || 'media/70f324040d622c32788dc789547ef2bd',
       obShowProgress: OB >= 3 && OB <= 7 && !st.bizAdd && !st.pEditMode, obStepLabel: 'Шаг ' + ({ 3: 1, 4: 2 }[OB] || 1) + ' из 2',
       obBars: [3, 4].map(function (k) { return k < OB ? INK : (k === OB ? PINK : LINE); }),
       obTitle: st.phoneChange && OB === 1 ? 'Новый номер телефона' : st.phoneChange && OB === 2 ? 'Код на новый номер' : OB === 4 ? (st.pEditMode ? 'Редактировать профиль' : st.bizAdd ? 'Новый бизнес-профиль' : st.obT === 'biz' ? 'О бизнесе' : 'Расскажи о себе') : OBT[OB][0], obSub: OB === 8 && st.obSkipCan && st.obSkipWant ? 'Лента уже ждёт — посмотри, что предлагают рядом' : OB === 8 && (st.obSkipCan || st.obSkipWant) ? 'Уже нашли, что может тебе подойти' : OB === 4 ? (st.obT === 'biz' ? 'Эти данные увидят клиенты в профиле' : 'Так тебя увидят в профиле и объявлениях') : OBT[OB][1], obCta: st.pEditMode && OB === 4 ? 'Сохранить' : st.bizAdd && OB === 4 ? 'Создать бизнес-профиль' : OBT[OB][2],
