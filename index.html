@@ -1,4 +1,4 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0}</style></head><body><title>МогуХочу на телефоне</title>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover"><style>body{margin:0}</style></head><body><title>МогуХочу на телефоне</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="МогуХочу">
@@ -2498,10 +2498,17 @@ input,textarea{font-size:16px}
     else if (this.componentDidUpdate) this.componentDidUpdate(prevProps || this.props);
   };
 
+  // Fit the 390×844 phone into the window. The on-screen keyboard only makes the
+  // visible area shorter (same width) — keep the scale then, or the whole app shrinks.
+  var fitBase = { w: 0, h: 0 };
   function fit() {
     var st = document.getElementById('stage');
     var vv = window.visualViewport;
     var w = vv ? vv.width : window.innerWidth, h = vv ? vv.height : window.innerHeight;
+    var a = document.activeElement;
+    var typing = a && /^(INPUT|TEXTAREA)$/.test(a.tagName);
+    if (fitBase.w && Math.abs(w - fitBase.w) < 2 && h < fitBase.h && (typing || fitBase.h - h > 150)) return;
+    fitBase = { w: w, h: h };
     var s = Math.min(w / 390, h / 844);
     st.style.transform = 'scale(' + s + ')';
   }
